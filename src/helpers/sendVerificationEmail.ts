@@ -10,7 +10,7 @@ export async function sendVerificationEmail(
 	try {
 		await resend.emails.send({
 			from: "bloom.ai <onboarding@resend.dev>",
-			to: [email],
+			to: email,
 			subject: "bloom.ai | Verification Code",
 			react: VerificationEmail({ username, otp: verifyCode }),
 		});
