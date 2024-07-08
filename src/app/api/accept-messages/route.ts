@@ -99,7 +99,7 @@ export async function GET(request: Request) {
 			{ status: 200 }
 		);
 	} catch (error) {
-		console.log("Error in getting message acceptance status");
+		console.log("Error in getting message acceptance status", error);
 		return Response.json(
 			{
 				success: false,
