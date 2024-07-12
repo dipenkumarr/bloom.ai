@@ -93,7 +93,7 @@ const DashboardPage = () => {
 	);
 
 	useEffect(() => {
-		if (!session || !session.user) return;
+		// if (!session || !session.user) return;
 
 		fetchMessages();
 		fetchAcceptMessage();
