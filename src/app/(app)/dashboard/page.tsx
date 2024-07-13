@@ -15,7 +15,7 @@ import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
-const DashboardPage = () => {
+export default function DashboardPage() {
 	const [messages, setMessages] = useState<Message[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSwitchLoading, setIsSwitchLoading] = useState(false);
@@ -208,6 +208,4 @@ const DashboardPage = () => {
 			</div>
 		</div>
 	);
-};
-
-export default DashboardPage;
+}
