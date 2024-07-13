@@ -16,10 +16,10 @@ const Navbar = () => {
 				<a href="#" className="text-4xl font-bold mb-4 md:mb-0">
 					bloom.ai
 				</a>
-				<div className="flex items-center space-x-4">
+				<div className="flex items-center space-x-8">
 					{session ? (
 						<>
-							<span className="text-sm md:text-base">
+							<span className="text-base font-normal">
 								Welcome, {user?.username || user?.email}
 							</span>
 							<Button
