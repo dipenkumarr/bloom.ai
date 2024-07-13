@@ -60,10 +60,9 @@ export default function Home() {
 				</Carousel>
 			</main>
 
-			{/* Footer */}
-			<footer className="text-center p-4 shadow-2xl md:p-6 bg-slate-900 text-white">
+			{/* <footer className="text-center p-4 shadow-2xl md:p-6 bg-slate-900 text-white">
 				© 2023 bloom.ai. All rights reserved.
-			</footer>
+			</footer> */}
 		</>
 	);
 }
