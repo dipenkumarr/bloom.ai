@@ -3,6 +3,8 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "../context/AuthProvider";
 import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,8 +26,12 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 		<html lang="en">
 			<AuthProvider>
 				<body className={space_grotesk.className}>
-					{children}
-					<Toaster />
+					<main className="flex flex-col h-screen justify-between">
+						<Navbar />
+						{children}
+						<Toaster />
+						<Footer />
+					</main>
 				</body>
 			</AuthProvider>
 		</html>

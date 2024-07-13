@@ -19,9 +19,17 @@ import {
 export default function Home() {
 	return (
 		<>
+			{/* <div className="absolute top-0 -z-10 h-full w-full bg-white">
+				<div className="absolute bottom-auto left-auto right-0 top-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] opacity-50 blur-[80px]"></div>
+			</div> */}
+			{/* <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]">
+				<div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_1000px_at_50%_800px,#C9EBFF,transparent)]"></div>
+			</div> */}
+
+			<div className="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div>
 			{/* Main content */}
 			<main
-				className={`flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 bg-gray-50 text-gray-900  `}
+				className={`flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 text-gray-900  `}
 			>
 				<section className="text-center mb-8 md:mb-12">
 					<h1 className="text-4xl md:text-5xl font-bold">
@@ -34,7 +42,7 @@ export default function Home() {
 
 				{/* Carousel for Messages */}
 				<Carousel
-					plugins={[Autoplay({ delay: 2000 })]}
+					plugins={[Autoplay({ delay: 3000 })]}
 					className="w-full max-w-lg md:max-w-xl"
 				>
 					<CarouselContent>
@@ -48,7 +56,7 @@ export default function Home() {
 										<Mail className="flex-shrink-0" />
 										<div>
 											<p>{message.content}</p>
-											<p className="text-xs text-muted-foreground">
+											<p className="text-xs text-muted-foreground mt-2">
 												{message.received}
 											</p>
 										</div>

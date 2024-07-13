@@ -1,33 +1,33 @@
 [
     {
-      "title": "Message from User123",
-      "content": "Hey, how are you doing today?",
-      "received": "10 minutes ago"
-    },
-    {
-      "title": "Message from SecretAdmirer",
-      "content": "I really liked your recent post!",
-      "received": "2 hours ago"
-    },
-    {
-      "title": "Message from MysteryGuest",
-      "content": "Do you have any book recommendations?",
-      "received": "1 day ago"
+      "title": "Message from Anonymous",
+      "content": "Thanks for the feedback platform, Bloom.ai! It allowed my students to share their honest thoughts on my teaching style. I appreciate the anonymity, as it encouraged some quieter students to participate.",
+      "received": "Yesterday"
     },
     {
       "title": "Message from Anonymous",
-      "content": "Your feedback site is amazing!",
+      "content": "Bloom.ai was helpful in gathering feedback from my team on a recent project. The anonymous option ensured everyone felt comfortable sharing their concerns. Here's a suggestion: adding the ability to filter feedback by department might be useful for future projects.",
       "received": "2 days ago"
     },
     {
-      "title": "Message from HiddenFriend",
-      "content": "Can we collaborate on a project?",
+      "title": "Message from Anonymous",
+      "content": "I used Bloom.ai to get feedback on a new piece of art. The positive comments were encouraging, and the constructive criticism helped me identify areas for improvement. Thanks!",
       "received": "3 days ago"
     },
     {
-      "title": "Message from UnknownSupporter",
-      "content": "Keep up the great work!",
+      "title": "Message from Anonymous",
+      "content": "I gave feedback to my professor through Bloom.ai about the class workload. It was a bit overwhelming at times. I hope the feedback helps!",
       "received": "4 days ago"
+    },
+    {
+      "title": "Message from Anonymous",
+      "content": "This is a great idea for a platform! I'm curious to see how it can be used in different situations. Keep up the good work!",
+      "received": "1 week ago"
+    },
+    {
+      "title": "Message from Anonymous",
+      "content": "Just wanted to say using Bloom.ai for our team feedback session was a success! It sparked some interesting discussions. Thanks for creating this platform!",
+      "received": "2 weeks ago"
     }
   ]
   

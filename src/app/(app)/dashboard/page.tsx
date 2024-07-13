@@ -8,7 +8,7 @@ import { Message } from "@/model/User";
 import { ApiResponse } from "@/types/ApiResponse";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios, { AxiosError } from "axios";
-import { Loader2, RefreshCcw } from "lucide-react";
+import { Copy, Loader2, RefreshCcw } from "lucide-react";
 import { User } from "next-auth";
 import { useSession } from "next-auth/react";
 import React, { useCallback, useEffect, useState } from "react";
@@ -142,8 +142,8 @@ function UserDashboard() {
 	};
 
 	return (
-		<div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
-			<h1 className="text-4xl font-bold mb-4">User Dashboard</h1>
+		<div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 rounded w-full max-w-6xl">
+			<h1 className="text-4xl font-bold mb-8">User Dashboard</h1>
 
 			<div className="mb-4">
 				<h2 className="text-lg font-semibold mb-2">
@@ -154,13 +154,18 @@ function UserDashboard() {
 						type="text"
 						value={profileUrl}
 						disabled
-						className="input input-bordered w-full p-2 mr-2"
+						className="input input-bordered w-full p-3 mr-2 rounded-xl bg-gray-100 text-base"
 					/>
-					<Button onClick={copyToClipboard}>Copy</Button>
+					<Button
+						onClick={copyToClipboard}
+						className="rounded-2xl px-4 py-6"
+					>
+						<Copy />
+					</Button>
 				</div>
 			</div>
 
-			<div className="mb-4">
+			<div className="mb-4 flex p-2 space-x-4">
 				<Switch
 					{...register("acceptMessages")}
 					checked={acceptMessages}
@@ -197,7 +202,7 @@ function UserDashboard() {
 						/>
 					))
 				) : (
-					<p>No messages to display.</p>
+					<p className="text-lg">No messages to display. 😔</p>
 				)}
 			</div>
 		</div>
