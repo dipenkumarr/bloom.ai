@@ -11,34 +11,36 @@ const Navbar = () => {
 	const user: User = session?.user;
 
 	return (
-		<nav className="p-4 md:p-6 shadow-md bg-gray-900 text-white">
+		<nav className="p-4 md:p-6 shadow-xl bg-gray-50 text-gray-900">
 			<div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-				<a href="#" className="text-xl font-bold mb-4 md:mb-0">
+				<a href="#" className="text-4xl font-bold mb-4 md:mb-0">
 					bloom.ai
 				</a>
-				{session ? (
-					<>
-						<span className="mr-4">
-							Welcome, {user?.username || user?.email}
-						</span>
-						<Button
-							onClick={() => signOut()}
-							className="w-full md:w-auto bg-slate-100 text-black"
-							variant="outline"
-						>
-							Logout
-						</Button>
-					</>
-				) : (
-					<Link href="/signin">
-						<Button
-							className="w-full md:w-auto bg-slate-100 text-black"
-							variant={"outline"}
-						>
-							Login
-						</Button>
-					</Link>
-				)}
+				<div className="flex items-center space-x-4">
+					{session ? (
+						<>
+							<span className="text-sm md:text-base">
+								Welcome, {user?.username || user?.email}
+							</span>
+							<Button
+								onClick={() => signOut()}
+								className="bg-gray-900 text-white hover:bg-gray-700"
+								variant="default"
+							>
+								Logout
+							</Button>
+						</>
+					) : (
+						<Link href="/signin">
+							<Button
+								className="bg-gray-900 text-white text-base duration-200 border-2 border-solid px-6 py-4 border-black hover:bg-white hover:text-black"
+								variant="default"
+							>
+								Sign in
+							</Button>
+						</Link>
+					)}
+				</div>
 			</div>
 		</nav>
 	);

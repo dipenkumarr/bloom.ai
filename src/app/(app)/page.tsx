@@ -20,13 +20,15 @@ export default function Home() {
 	return (
 		<>
 			{/* Main content */}
-			<main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 bg-gray-50 text-gray-900">
+			<main
+				className={`flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 bg-gray-50 text-gray-900  `}
+			>
 				<section className="text-center mb-8 md:mb-12">
-					<h1 className="text-4xl md:text-6xl font-bold">
+					<h1 className="text-4xl md:text-5xl font-bold">
 						Bloom.ai - Anonymous Feedback
 					</h1>
 					<p className="mt-3 md:mt-4 text-lg md:text-xl">
-						True Feedback - Where your identity remains a secret.
+						Make Feedback Matter. Improve Together with Bloom.ai.
 					</p>
 				</section>
 
@@ -59,7 +61,7 @@ export default function Home() {
 			</main>
 
 			{/* Footer */}
-			<footer className="text-center p-4 md:p-6 bg-gray-900 text-white">
+			<footer className="text-center p-4 shadow-2xl md:p-6 bg-slate-900 text-white">
 				© 2023 bloom.ai. All rights reserved.
 			</footer>
 		</>
