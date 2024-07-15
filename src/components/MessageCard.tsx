@@ -70,9 +70,12 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
 						{/* <CardContent>{message.content}</CardContent> */}
 						<AlertDialog>
 							<AlertDialogTrigger asChild>
-								<Button variant="destructive">
+								{/* <Button variant="destructive">
 									<X className="w-4 h-4" />
-								</Button>
+								</Button> */}
+								<button className="md:hover:bg-black md:hover:text-red-300 duration-200 md:p-1 rounded-full text-red-800">
+									<X />
+								</button>
 							</AlertDialogTrigger>
 							<AlertDialogContent>
 								<AlertDialogHeader>

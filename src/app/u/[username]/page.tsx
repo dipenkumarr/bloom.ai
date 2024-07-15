@@ -57,27 +57,27 @@ const MessagePage = () => {
 	// const { watch, setValue } = form;
 	// const acceptMessages = watch("acceptMessages");
 
-	const fetchIsAcceptingMessages = useCallback(async () => {
-		try {
-			const response = await axios.get<ApiResponse>(
-				"/api/accept-messages"
-			);
-			setIsAcceptingMessage(response.data.isAcceptingMessage || false);
-		} catch (error) {
-			const axiosError = error as AxiosError<ApiResponse>;
-			toast({
-				title: "Error",
-				description:
-					axiosError.response?.data.message ??
-					"Failed to fetch if user is accepting messages settings",
-				variant: "destructive",
-			});
-		}
-	}, [toast, isSendingMessage, isAcceptingMessage]);
+	// const fetchIsAcceptingMessages = useCallback(async () => {
+	// 	try {
+	// 		const response = await axios.get<ApiResponse>(
+	// 			"/api/accept-messages"
+	// 		);
+	// 		setIsAcceptingMessage(response.data.isAcceptingMessage || false);
+	// 	} catch (error) {
+	// 		const axiosError = error as AxiosError<ApiResponse>;
+	// 		toast({
+	// 			title: "Error",
+	// 			description:
+	// 				axiosError.response?.data.message ??
+	// 				"Failed to fetch if user is accepting messages settings",
+	// 			variant: "destructive",
+	// 		});
+	// 	}
+	// }, [toast, isSendingMessage, isAcceptingMessage]);
 
-	useEffect(() => {
-		fetchIsAcceptingMessages();
-	}, [toast, fetchIsAcceptingMessages, isAcceptingMessage]);
+	// useEffect(() => {
+	// 	fetchIsAcceptingMessages();
+	// }, [toast, fetchIsAcceptingMessages, isAcceptingMessage]);
 
 	const handleSendMessage = async (data: z.infer<typeof messageSchema>) => {
 		setIsSendingMessage(true);
@@ -143,116 +143,116 @@ const MessagePage = () => {
 	};
 
 	return (
-		<div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 mt-16 rounded w-full max-w-6xl">
-			<h1 className="text-4xl font-bold mb-8">Public Profile Link</h1>
+		<>
+			<div className="absolute top-0 z-[-2] h-screen w-screen bg-white bg-[radial-gradient(ellipse_60%_60%_at_50%_50%,rgba(120,119,198,0.15),rgba(255,255,255,0))]"></div>
 
-			<Separator />
+			<div className="my-4 mx-2 md:my-8 md:mx-4 lg:mx-auto p-4 md:p-6 mt-8 md:mt-16 rounded w-full max-w-6xl">
+				<h1 className="text-2xl md:text-4xl font-bold mb-4 md:mb-8">
+					🔗 Public Profile Link
+				</h1>
 
-			<div className="mt-6 mb-4">
-				<h2 className="text-xl font-semibold mb-4">
-					Send Anonymous Message to - @{params.username}
-				</h2>{" "}
-				<div className="flex items-center text-base">
-					<Form {...form}>
-						<form
-							onSubmit={form.handleSubmit(handleSendMessage)}
-							className="w-full space-y-6"
-						>
-							<FormField
-								control={form.control}
-								name="content"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className="text-lg">
-											Message
-										</FormLabel>
-										<FormControl>
-											<Textarea
-												placeholder="Write an anonymous feedback!"
-												className="resize-none text-base"
-												{...field}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<Button type="submit" className="hover:bg-gray-600">
-								Submit
-							</Button>
-						</form>
-					</Form>
+				<Separator />
+
+				<div className="mt-4 md:mt-6 mb-4">
+					<h2 className="text-lg md:text-xl font-semibold mb-2 md:mb-4">
+						Send Anonymous Message to - @{params.username}
+					</h2>
+					<div className="flex flex-col items-start text-sm md:text-base">
+						<Form {...form}>
+							<form
+								onSubmit={form.handleSubmit(handleSendMessage)}
+								className="w-full space-y-4 md:space-y-6"
+							>
+								<FormField
+									control={form.control}
+									name="content"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel className="text-base md:text-lg">
+												Message
+											</FormLabel>
+											<FormControl>
+												<Textarea
+													placeholder="Write an anonymous feedback!"
+													className="resize-y text-sm md:text-lg min-h-32 max-h-96"
+													{...field}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<Button
+									type="submit"
+									className="w-full md:w-auto hover:bg-gray-600"
+								>
+									Submit
+								</Button>
+							</form>
+						</Form>
+					</div>
 				</div>
-			</div>
 
-			<Separator className="my-20" />
+				<Separator className="my-8 md:my-20" />
 
-			<div>
 				<div>
 					<Button
 						onClick={() => fetchSuggestedMessages()}
 						disabled={isLoading}
+						className="w-full md:w-auto mb-4"
 					>
 						Suggest Messages
 					</Button>
-				</div>
-				<div className="my-6">
-					{/* {parseFeedbacks(completion).map((message, index) => {
-						return (
-							<button
-								key={index}
-								onClick={() =>
-									form.reset({
-										...form.getValues(),
-										content: message,
-									})
-								}
-								className="my-4 w-full p-3 text-lg font-medium border-2 border-solid border-slate-900 rounded-2xl"
-							>
-								<p>{message}</p>
-							</button>
-						);
-					})} */}
-					<Card>
-						<CardHeader>
-							<h3 className="text-2xl font-semibold">Messages</h3>
-						</CardHeader>
-						<CardContent className="flex flex-col space-y-4">
-							{error ? (
-								<p className="text-red-500">{error.message}</p>
-							) : (
-								parseFeedbacks(completion).map(
-									(message, index) => (
-										<Button
-											key={index}
-											variant="outline"
-											className="text-base p-2 rounded-xl mt-2"
-											onClick={() =>
-												form.reset({
-													...form.getValues(),
-													content: message,
-												})
-											}
-										>
-											{message}
-										</Button>
+					<div className="my-4 md:my-6">
+						<Card>
+							<CardHeader>
+								<h3 className="text-xl md:text-2xl font-semibold">
+									Messages
+								</h3>
+							</CardHeader>
+							<CardContent className="flex flex-col space-y-2 md:space-y-4">
+								{error ? (
+									<p className="text-red-500 text-sm md:text-base">
+										{error.message}
+									</p>
+								) : (
+									parseFeedbacks(completion).map(
+										(message, index) => (
+											<Button
+												key={index}
+												variant="outline"
+												className="text-xs text-wrap md:text-base p-2 rounded-xl mt-2 w-full text-left"
+												onClick={() =>
+													form.reset({
+														...form.getValues(),
+														content: message,
+													})
+												}
+											>
+												{message}
+											</Button>
+										)
 									)
-								)
-							)}
-						</CardContent>
-					</Card>
+								)}
+							</CardContent>
+						</Card>
 
-					<Separator className="my-20" />
+						<Separator className="my-8 md:my-20" />
 
-					<div className="text-center">
-						<div className="mb-4">Get Your Account!</div>
-						<Link href={"/signup"}>
-							<Button>Create Your Account</Button>
-						</Link>
+						<div className="text-center">
+							<div className="mb-4 text-sm md:text-base">
+								Get Your Account!
+							</div>
+							<Link target="_blank" href={"/signup"}>
+								<Button className="w-full md:w-auto">
+									Create Your Account
+								</Button>
+							</Link>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 

@@ -29,10 +29,8 @@ export default function Home() {
 
 			<div className="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div>
 			<Navbar />
-			{/* Main content */}
-			<main
-				className={`flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 text-gray-900  `}
-			>
+
+			<main className="flex flex-col items-center justify-center px-4 md:px-24 py-12 text-gray-900">
 				<section className="text-center mb-8 md:mb-12">
 					<h1 className="text-4xl md:text-5xl font-bold">
 						Bloom.ai - Anonymous Feedback
@@ -42,32 +40,35 @@ export default function Home() {
 					</p>
 				</section>
 
-				{/* Carousel for Messages */}
-				<Carousel
-					plugins={[Autoplay({ delay: 3000 })]}
-					className="w-full max-w-lg md:max-w-xl"
-				>
-					<CarouselContent>
-						{messages.map((message, index) => (
-							<CarouselItem key={index} className="p-4">
-								<Card className="rounded-2xl shadow-lg">
-									<CardHeader>
-										<CardTitle>{message.title}</CardTitle>
-									</CardHeader>
-									<CardContent className="flex flex-col rounded-xl md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
-										<Mail className="flex-shrink-0" />
-										<div>
-											<p>{message.content}</p>
-											<p className="text-xs text-muted-foreground mt-2">
-												{message.received}
-											</p>
-										</div>
-									</CardContent>
-								</Card>
-							</CarouselItem>
-						))}
-					</CarouselContent>
-				</Carousel>
+				<div className="flex items-center justify-center w-full">
+					<Carousel
+						plugins={[Autoplay({ delay: 3000 })]}
+						className="w-full max-w-lg md:max-w-xl"
+					>
+						<CarouselContent>
+							{messages.map((message, index) => (
+								<CarouselItem key={index} className="p-4">
+									<Card className="rounded-2xl shadow-lg bg-blend-soft-light">
+										<CardHeader>
+											<CardTitle>
+												{message.title}
+											</CardTitle>
+										</CardHeader>
+										<CardContent className="flex flex-col rounded-xl md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
+											<Mail className="flex-shrink-0" />
+											<div>
+												<p>{message.content}</p>
+												<p className="text-xs text-muted-foreground mt-2">
+													{message.received}
+												</p>
+											</div>
+										</CardContent>
+									</Card>
+								</CarouselItem>
+							))}
+						</CarouselContent>
+					</Carousel>
+				</div>
 			</main>
 
 			{/* <footer className="text-center p-4 shadow-2xl md:p-6 bg-slate-900 text-white">

@@ -142,70 +142,82 @@ function UserDashboard() {
 	};
 
 	return (
-		<div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 rounded w-full max-w-6xl">
-			<h1 className="text-4xl font-bold mb-8">User Dashboard</h1>
-
-			<div className="mb-4">
-				<h2 className="text-lg font-semibold mb-2">
-					Copy Your Unique Link
-				</h2>{" "}
-				<div className="flex items-center">
-					<input
-						type="text"
-						value={profileUrl}
-						disabled
-						className="input input-bordered w-full p-3 mr-2 rounded-xl bg-gray-100 text-base"
-					/>
-					<Button
-						onClick={copyToClipboard}
-						className="rounded-2xl px-4 py-6"
-					>
-						<Copy />
-					</Button>
-				</div>
+		<>
+			<div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem]">
+				<div className="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_800px_at_50%_600px,#DDF2FF,transparent)]"></div>
 			</div>
 
-			<div className="mb-4 flex p-2 space-x-4">
-				<Switch
-					{...register("acceptMessages")}
-					checked={acceptMessages}
-					onCheckedChange={handleSwitchChange}
-					disabled={isSwitchLoading}
-				/>
-				<span className="ml-2">
-					Accept Messages: {acceptMessages ? "On" : "Off"}
-				</span>
-			</div>
-			<Separator />
+			<div className="my-2 mx-2 sm:my-6 sm:mx-4 md:my-16 md:mx-8 lg:mx-auto p-4 sm:p-6 rounded w-full max-w-6xl">
+				<h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">
+					User Dashboard
+				</h1>
 
-			<Button
-				className="mt-4"
-				variant="outline"
-				onClick={(e) => {
-					e.preventDefault();
-					fetchMessages(true);
-				}}
-			>
-				{isLoading ? (
-					<Loader2 className="h-4 w-4 animate-spin" />
-				) : (
-					<RefreshCcw className="h-4 w-4" />
-				)}
-			</Button>
-			<div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-				{messages.length > 0 ? (
-					messages.map((message, index) => (
-						<MessageCard
-							key={message._id as string}
-							message={message}
-							onMessageDelete={handleDeleteMessage}
+				<div className="mb-4 sm:mb-6">
+					<h2 className="text-base sm:text-lg font-semibold mb-2">
+						Copy Your Unique Link
+					</h2>
+					<div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
+						<input
+							type="text"
+							value={profileUrl}
+							disabled
+							className="input input-bordered w-full p-2 sm:p-3 rounded-xl bg-white border-2 border-black text-sm sm:text-base"
 						/>
-					))
-				) : (
-					<p className="text-lg">No messages to display. 😔</p>
-				)}
+						<Button
+							onClick={copyToClipboard}
+							className="rounded-xl px-4 py-2 sm:py-3 w-full sm:w-auto"
+						>
+							<Copy className="h-4 w-4 sm:h-5 sm:w-5" />
+						</Button>
+					</div>
+				</div>
+
+				<div className="mb-4 sm:mb-6 flex items-center space-x-2 sm:space-x-4 p-2">
+					<Switch
+						{...register("acceptMessages")}
+						checked={acceptMessages}
+						onCheckedChange={handleSwitchChange}
+						disabled={isSwitchLoading}
+					/>
+					<span className="text-base">
+						Accept Messages: {acceptMessages ? "On" : "Off"}
+					</span>
+				</div>
+				<Separator />
+
+				<Button
+					className="mt-4 w-full sm:w-auto"
+					variant="outline"
+					onClick={(e) => {
+						e.preventDefault();
+						fetchMessages(true);
+					}}
+				>
+					{isLoading ? (
+						<Loader2 className="h-4 w-4 animate-spin" />
+					) : (
+						<RefreshCcw className="h-4 w-4" />
+					)}
+				</Button>
+				<div className="mt-4 sm:mt-6 grid grid-cols-1 gap-4 sm:gap-6">
+					{messages.length > 0 ? (
+						messages.map((message) => (
+							<MessageCard
+								key={message._id as string}
+								message={message}
+								onMessageDelete={handleDeleteMessage}
+							/>
+						))
+					) : (
+						<p className="text-base sm:text-lg">
+							No messages to display. 😔
+						</p>
+					)}
+				</div>
+
+				<Separator className="my-12" />
 			</div>
-		</div>
+		</>
 	);
 }
 
