@@ -98,7 +98,7 @@ const page = () => {
 	};
 
 	return (
-		<div className="flex justify-center items-center min-h-screen bg-gray-100">
+		<div className="flex justify-center items-center h-screen">
 			<div className="w-full max-w-md lg:max-w-lg p-12 space-y-8 bg-white rounded-3xl shadow-lg">
 				<div className="text-center">
 					<h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">

@@ -1,4 +1,3 @@
-import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 
 interface RootLayoutProps {
@@ -7,8 +6,11 @@ interface RootLayoutProps {
 
 export default async function RootLayout({ children }: RootLayoutProps) {
 	return (
-		<div className="flex flex-col h-screen justify-between">
-			<main className="flex-1">{children}</main>
+		<div className="relative flex flex-col h-screen justify-between">
+			<main className="flex-1">
+				<Navbar />
+				{children}
+			</main>
 		</div>
 	);
 }

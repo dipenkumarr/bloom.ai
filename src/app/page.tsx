@@ -15,6 +15,7 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
 	return (
@@ -27,6 +28,7 @@ export default function Home() {
 			</div> */}
 
 			<div className="absolute top-0 z-[-2] h-screen w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"></div>
+			<Navbar />
 			{/* Main content */}
 			<main
 				className={`flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12 text-gray-900  `}

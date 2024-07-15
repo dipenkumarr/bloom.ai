@@ -27,7 +27,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 			<AuthProvider>
 				<body className={space_grotesk.className}>
 					<main className="flex flex-col h-screen justify-between">
-						<Navbar />
+						{/* <Navbar /> */}
 						{children}
 						<Toaster />
 						<Footer />
