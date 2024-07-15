@@ -22,6 +22,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+import { Separator } from "@/components/ui/separator";
 
 const MessagePage = () => {
 	const [messageContent, setMessageContent] = useState("");
@@ -75,12 +76,14 @@ const MessagePage = () => {
 				}
 			);
 
-			console.log(response);
-
 			toast({
 				title: "Success",
 				description: response.data.message,
 			});
+
+			form.reset({ ...form.getValues(), content: "" });
+
+			setIsSendingMessage(false);
 		} catch (error) {
 			console.error("Error in sending message", error);
 			const axiosError = error as AxiosError<ApiResponse>;
@@ -97,37 +100,46 @@ const MessagePage = () => {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center my-8 mx-4 md:mx-8 lg:mx-auto p-6 w-full">
+		<div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 mt-16 rounded w-full max-w-6xl">
 			<h1 className="text-4xl font-bold mb-8">Public Profile Link</h1>
 
-			<div>
-				<Form {...form}>
-					<form
-						onSubmit={form.handleSubmit(handleSendMessage)}
-						className="w-full space-y-6"
-					>
-						<FormField
-							control={form.control}
-							name="content"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Message</FormLabel>
-									<FormControl>
-										<Textarea
-											placeholder="Send an anonymous feedback!"
-											className="resize-none"
-											{...field}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-						<Button type="submit" className="hover:bg-gray-600">
-							Submit
-						</Button>
-					</form>
-				</Form>
+			<Separator />
+
+			<div className="mt-6 mb-4">
+				<h2 className="text-xl font-semibold mb-4">
+					Send Anonymous Message to - @{params.username}
+				</h2>{" "}
+				<div className="flex items-center">
+					<Form {...form}>
+						<form
+							onSubmit={form.handleSubmit(handleSendMessage)}
+							className="w-full space-y-6"
+						>
+							<FormField
+								control={form.control}
+								name="content"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel className="text-lg">
+											Message
+										</FormLabel>
+										<FormControl>
+											<Textarea
+												placeholder="Send an anonymous feedback!"
+												className="resize-none"
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+							<Button type="submit" className="hover:bg-gray-600">
+								Submit
+							</Button>
+						</form>
+					</Form>
+				</div>
 			</div>
 		</div>
 	);

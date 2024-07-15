@@ -1,6 +1,12 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+	Card,
+	CardContent,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@/components/ui/card";
 
 import {
 	AlertDialog,
@@ -54,14 +60,18 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
 	return (
 		<div>
 			<Card className="card-bordered">
-				<CardHeader>
-					<div className="flex justify-between items-center">
-						<CardTitle>{message.content}</CardTitle>
-
+				<CardContent className="mt-4">{message.content}</CardContent>
+				<CardFooter className="flex justify-between -mt-4 -mb-4">
+					<div className="flex text-sm">
+						{dayjs(message.createdAt).format("MMM D, YYYY h:mm A")}
+					</div>
+					<div>
+						{/* <CardTitle>{message.content}</CardTitle> */}
+						{/* <CardContent>{message.content}</CardContent> */}
 						<AlertDialog>
 							<AlertDialogTrigger asChild>
 								<Button variant="destructive">
-									<X className="w-5 h-5" />
+									<X className="w-4 h-4" />
 								</Button>
 							</AlertDialogTrigger>
 							<AlertDialogContent>
@@ -87,11 +97,7 @@ const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
 							</AlertDialogContent>
 						</AlertDialog>
 					</div>
-					<div className="text-sm">
-						{dayjs(message.createdAt).format("MMM D, YYYY h:mm A")}
-					</div>
-				</CardHeader>
-				<CardContent></CardContent>
+				</CardFooter>
 			</Card>
 		</div>
 	);
