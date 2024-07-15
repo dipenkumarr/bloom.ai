@@ -25,6 +25,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { useCompletion } from "ai/react";
 import { Loader2 } from "lucide-react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import Link from "next/link";
 
 const initialFeedbacks =
 	"How can I improve my public speaking skills? I get nervous during presentations.||What's one thing I could do to be a better team player at work?||I'm considering a career change. What questions should I be asking myself?";
@@ -32,22 +34,6 @@ const initialFeedbacks =
 const parseFeedbacks = (messageString: string): string[] => {
 	return messageString.split("||");
 };
-
-const prompt = `You are an AI assistant for bloom.ai, a platform fostering engaging conversations. Generate 3 thought-provoking questions or feedback prompts, each separated by '||'. These should be suitable for a diverse audience and encourage friendly interaction.
-Consider the following guidelines:
-1. Make questions open-ended to spark discussion
-2. Cover a range of topics (e.g., personal growth, social issues, fun hypotheticals)
-3. Avoid sensitive or overly personal subjects
-4. Ensure prompts are universally relatable and inclusive
-5. Aim for a mix of light-hearted and more reflective questions
-6. Keep language clear and concise
-
-Format your response as: 'Question 1||Question 2||Question 3'
-
-Example output:
-'What's a small change you've made that had a big impact on your life?||If you could instantly become an expert in one subject, what would you choose and why?||What's a piece of advice you wish you could give to your younger self?'
-
-Provide 3 new, unique questions/feedback prompts following these guidelines.`;
 
 const MessagePage = () => {
 	const [isSendingMessage, setIsSendingMessage] = useState(false);
@@ -140,9 +126,9 @@ const MessagePage = () => {
 	const fetchSuggestedMessages = async () => {
 		try {
 			// Add a random element to the prompt
-			const randomPrompt = `${prompt}\n\nRandom seed: ${Math.random()}`;
+			// const randomPrompt = `${prompt}\n\nRandom seed: ${Math.random()}`;
 			console.log("Fetching new suggestions...");
-			const result = await complete(randomPrompt);
+			const result = await complete("");
 			console.log("API response:", result);
 			// You might want to update state here if the completion state isn't updating automatically
 		} catch (error) {
@@ -166,7 +152,7 @@ const MessagePage = () => {
 				<h2 className="text-xl font-semibold mb-4">
 					Send Anonymous Message to - @{params.username}
 				</h2>{" "}
-				<div className="flex items-center">
+				<div className="flex items-center text-base">
 					<Form {...form}>
 						<form
 							onSubmit={form.handleSubmit(handleSendMessage)}
@@ -183,7 +169,7 @@ const MessagePage = () => {
 										<FormControl>
 											<Textarea
 												placeholder="Write an anonymous feedback!"
-												className="resize-none"
+												className="resize-none text-base"
 												{...field}
 											/>
 										</FormControl>
@@ -199,9 +185,9 @@ const MessagePage = () => {
 				</div>
 			</div>
 
-			<Separator className="mt-20" />
+			<Separator className="my-20" />
 
-			<div className="mt-20">
+			<div>
 				<div>
 					<Button
 						onClick={() => fetchSuggestedMessages()}
@@ -210,8 +196,8 @@ const MessagePage = () => {
 						Suggest Messages
 					</Button>
 				</div>
-				<div className="mt-4">
-					{parseFeedbacks(completion).map((message, index) => {
+				<div className="my-6">
+					{/* {parseFeedbacks(completion).map((message, index) => {
 						return (
 							<button
 								key={index}
@@ -226,7 +212,44 @@ const MessagePage = () => {
 								<p>{message}</p>
 							</button>
 						);
-					})}
+					})} */}
+					<Card>
+						<CardHeader>
+							<h3 className="text-2xl font-semibold">Messages</h3>
+						</CardHeader>
+						<CardContent className="flex flex-col space-y-4">
+							{error ? (
+								<p className="text-red-500">{error.message}</p>
+							) : (
+								parseFeedbacks(completion).map(
+									(message, index) => (
+										<Button
+											key={index}
+											variant="outline"
+											className="text-base p-2 rounded-xl mt-2"
+											onClick={() =>
+												form.reset({
+													...form.getValues(),
+													content: message,
+												})
+											}
+										>
+											{message}
+										</Button>
+									)
+								)
+							)}
+						</CardContent>
+					</Card>
+
+					<Separator className="my-20" />
+
+					<div className="text-center">
+						<div className="mb-4">Get Your Account!</div>
+						<Link href={"/signup"}>
+							<Button>Create Your Account</Button>
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>

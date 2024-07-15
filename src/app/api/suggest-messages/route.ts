@@ -7,7 +7,7 @@ export const maxDuration = 30;
 export async function POST(req: Request) {
 	try {
 		// const { messages } = await req.json();
-		const prompt = `You are an AI assistant for bloom.ai, a platform fostering engaging conversations. Generate 3 thought-provoking questions or feedback prompts, each separated by '||'. These should be suitable for a diverse audience and encourage friendly interaction.
+		const prompt = `RANDOM PROMPT GENERATOR NUMBER: ${Math.random()} You are an AI assistant for bloom.ai, a platform fostering engaging conversations. Generate 3 thought-provoking questions or feedback prompts, each separated by '||'. These should be suitable for a diverse audience and encourage friendly interaction.
                 Consider the following guidelines:
                 1. Make questions open-ended to spark discussion
                 2. Cover a range of topics (e.g., personal growth, social issues, fun hypotheticals)
@@ -28,10 +28,7 @@ export async function POST(req: Request) {
 			prompt,
 		});
 
-		console.log("ai result: ", result);
-
-		// return result.toAIStreamResponse();
-		return new StreamingTextResponse(result.toAIStream());
+		return result.toAIStreamResponse();
 	} catch (error) {
 		console.error("An unexpected error occurred", error);
 		throw error;
