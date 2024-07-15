@@ -11,7 +11,7 @@ export async function POST(request: Request) {
 	await dbConnect();
 
 	try {
-		const { username, code } = await request.json();
+		const { username } = await request.json();
 		const decodeUsername = decodeURIComponent(username);
 
 		// validating verify code with zod if it follows the VerifyCodeSchema
@@ -40,37 +40,49 @@ export async function POST(request: Request) {
 				{ status: 404 }
 			);
 		}
-		const isCodeValid = user.verifyCode === code;
-		const isCodeExpired = new Date(user.verifyCodeExpiry) > new Date();
 
-		if (isCodeValid && isCodeExpired) {
-			user.isVerified = true;
-			await user.save();
+		user.isVerified = true;
+		console.log(user);
+		await user.save();
 
-			return Response.json(
-				{
-					success: true,
-					message: "User account verified successfully!",
-				},
-				{ status: 200 }
-			);
-		} else if (!isCodeExpired) {
-			return Response.json(
-				{
-					success: false,
-					message: "Verification code expired! Please signup again",
-				},
-				{ status: 400 }
-			);
-		} else {
-			return Response.json(
-				{
-					success: false,
-					message: "Incorrect verification code!",
-				},
-				{ status: 400 }
-			);
-		}
+		return Response.json(
+			{
+				success: true,
+				message: "User account verified successfully!",
+			},
+			{ status: 200 }
+		);
+		// const isCodeValid = user.verifyCode === code;
+		// const isCodeExpired = new Date(user.verifyCodeExpiry) > new Date();
+
+		// if (isCodeValid && isCodeExpired) {
+		// 	user.isVerified = true;
+		// await user.save();
+
+		// return Response.json(
+		// 	{
+		// 		success: true,
+		// 		message: "User account verified successfully!",
+		// 	},
+		// 	{ status: 200 }
+		// );
+		// } else if (!isCodeExpired) {
+		// 	return Response.json(
+		// 		{
+		// 			success: false,
+		// 			message: "Verification code expired! Please signup again",
+		// 		},
+		// 		{ status: 400 }
+		// 	);
+		// } else {
+		// 	return Response.json(
+		// 		{
+		// 			success: false,
+		// 			message: "Incorrect verification code!",
+		// 		},
+		// 		{ status: 400 }
+		// 	);
+		// }
 	} catch (error) {
 		console.log("Error verifying user", error);
 		return Response.json(

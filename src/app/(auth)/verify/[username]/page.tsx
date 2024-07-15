@@ -33,11 +33,11 @@ const VerifyAccount = () => {
 		},
 	});
 
-	const onSubmit = async (data: z.infer<typeof verifySchema>) => {
+	const onSubmit = async () => {
 		try {
 			const response = await axios.post(`/api/verify-code`, {
 				username: params.username,
-				code: data.verifyCode,
+				// code: data.verifyCode,
 			});
 
 			console.log(response);
@@ -73,9 +73,16 @@ const VerifyAccount = () => {
 					<p className="mb-4 text-base font-medium">
 						Enter the verification code sent to your email
 					</p>
+					<Button
+						type="submit"
+						onClick={() => onSubmit()}
+						className="mt-4"
+					>
+						Verify
+					</Button>
 				</div>
 
-				<Form {...form}>
+				{/* <Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
 						className="space-y-6"
@@ -98,7 +105,7 @@ const VerifyAccount = () => {
 						/>
 						<Button type="submit">Submit</Button>
 					</form>
-				</Form>
+				</Form> */}
 			</div>
 		</div>
 	);
