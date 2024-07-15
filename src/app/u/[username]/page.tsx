@@ -121,7 +121,7 @@ const MessagePage = () => {
 				description: error.message,
 			});
 		}
-	}, [error]);
+	}, [error, toast]);
 
 	const fetchSuggestedMessages = async () => {
 		try {

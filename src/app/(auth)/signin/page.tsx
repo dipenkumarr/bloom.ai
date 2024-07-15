@@ -25,7 +25,7 @@ import { useForm } from "react-hook-form";
 import { useDebounceCallback } from "usehooks-ts";
 import * as z from "zod";
 
-const pages = () => {
+const SignInPage = () => {
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const { toast } = useToast();
@@ -153,4 +153,4 @@ const pages = () => {
 	);
 };
 
-export default pages;
+export default SignInPage;
