@@ -30,7 +30,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 						{/* <Navbar /> */}
 						{children}
 						<Toaster />
-						<Footer />
+						{/* <Footer /> */}
 					</main>
 				</body>
 			</AuthProvider>

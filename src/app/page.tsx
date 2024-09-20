@@ -16,6 +16,7 @@ import {
 	CarouselPrevious,
 } from "@/components/ui/carousel";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default function Home() {
 	return (
@@ -74,6 +75,8 @@ export default function Home() {
 			{/* <footer className="text-center p-4 shadow-2xl md:p-6 bg-slate-900 text-white">
 				© 2023 bloom.ai. All rights reserved.
 			</footer> */}
+
+			<Footer />
 		</>
 	);
 }
